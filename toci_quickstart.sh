@@ -163,6 +163,22 @@ else
         # Print status of playbook run
         [[ "$exit_value" == 0 ]] && echo "Playbook run of $playbook passed successfully"
         [[ "$exit_value" != 0 ]] && echo "Playbook run of $playbook failed" && break
+
+echo 'checking tht'
+THT_DIR=/usr/share/openstack-tripleo-heat-templates
+
+if [ -d $THT_DIR ]; then
+  echo 'found tht'
+  if [ ! -d $THT_DIR/.git ]; then
+    echo 'but not from git'
+    mv $THT_DIR $THT_DIR-old
+  fi
+fi
+
+if [ ! -d $THT_DIR/.git ]; then
+  echo 'cloning'
+  git clone https://github.com/michaeltchapman/tripleo-heat-templates /usr/share/openstack-tripleo-heat-templates
+fi
     done
 
     [[ "$exit_value" == 0 ]] && echo "Playbook run passed successfully" || echo "Playbook run failed"
