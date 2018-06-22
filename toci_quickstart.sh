@@ -171,13 +171,13 @@ if [ -d $THT_DIR ]; then
   echo 'found tht'
   if [ ! -d $THT_DIR/.git ]; then
     echo 'but not from git'
-    mv $THT_DIR $THT_DIR-old
+    sudo mv $THT_DIR $THT_DIR-old
   fi
 fi
 
 if [ ! -d $THT_DIR/.git ]; then
   echo 'cloning'
-  git clone https://github.com/michaeltchapman/tripleo-heat-templates /usr/share/openstack-tripleo-heat-templates
+  sudo git clone https://github.com/michaeltchapman/tripleo-heat-templates /usr/share/openstack-tripleo-heat-templates
 fi
     done
 
